@@ -33,7 +33,34 @@
         </div>
     </section>
 
-    <section id="mempelai" class="py-5 container text-center">
+    <section id="photo-showcase" class="position-relative overflow-hidden p-0" style="height: 120vh;">
+        
+        <!-- AUTOSLIDE CAROUSEL BACKGROUND -->
+        <div id="carouselShowcase" class="carousel slide carousel-fade position-absolute top-0 start-0 w-100 h-100" data-bs-ride="carousel" data-bs-interval="4000">
+            <div class="carousel-inner h-100">
+                <div class="carousel-item active h-100">
+                    <img src="img/IMG_6088.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Slide 1">
+                </div>
+                <div class="carousel-item h-100">
+                    <img src="img/IMG_6092.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Slide 2">
+                </div>
+                <div class="carousel-item h-100">
+                    <img src="img/IMG_6096.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Slide 3">
+                </div>
+            </div>
+            <!-- Lapisan Transparan Kegelapan (Overlay) -->
+            <div class="showcase-overlay"></div>
+        </div>
+
+        <!-- TEKS DI ATAS FOTO SLIDE -->
+        <div class="position-relative h-100 d-flex align-items-center justify-content-center text-center text-white p-3" style="z-index: 2;">
+            <div class="max-width-custom">
+                <i class="fa-solid fa-heart text-gold mb-3" style="font-size: 1.5rem;"></i>
+                <p class="font-wedding italic display-6 mb-2" style="color: #ffffff !important;">"Dua jiwa, satu hati, satu langkah menuju keabadian."</p>
+                <p class="small text-uppercase tracking-widest opacity-75" style="letter-spacing: 3px;">Silpi & Diffran</p>
+            </div>
+        </div>
+    </section>
 
         <!-- MEMPELAI & COUNTDOWN SECTION -->
     <section id="mempelai" class="py-5 container text-center">
