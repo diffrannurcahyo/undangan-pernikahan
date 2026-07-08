@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Digital</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+
+    <section id="cover" class="hero px-3">
+        <div class="text-center">
+            <h5 class="text-uppercase tracking-wide mb-3 text-white-50" style="letter-spacing: 3px;">The Wedding of</h5>
+            <h1 class="font-wedding text-hero-title">Silpi & Diffran</h1>
+            <p class="lead mb-4 text-white">10 Oktober 2026</p>
+            <div class="text-white mb-4 px-3 py-2 mx-auto" style="max-width: 500px; background: rgba(0,0,0,0.3); border-radius: 10px;">
+                <p class="mb-1 small opacity-75">Kpd Bpk/Ibu/Saudara/i:</p>
+                <h4 id="nama-tamu" class="fw-bold text-gold my-2">Nama Tamu</h4>
+                <p class="mb-0 small opacity-75 text-italic">"Tanpa Mengurangi Rasa Hormat, Kami Mengundang Anda Untuk Hadir Di Acara Pernikahan Kami."</p>
+            </div>
+            <button id="tombol-buka" class="btn btn-custom text-uppercase">
+                <i class="fa-solid fa-envelope-open me-2"></i>Buka Undangan
+            </button>
+        </div>
+    </section>
+
+    <section id="mempelai" class="py-5 container text-center">
+
+        <!-- MEMPELAI & COUNTDOWN SECTION -->
+    <section id="mempelai" class="py-5 container text-center">
+        
+        <!-- QUOTES AYAT AL-QURAN (Baru) -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-8 px-4">
+                <div class="quotes-quran p-4 bg-white rounded shadow-sm border-top border-bottom">
+                    <p class="arabic-text mb-3" dir="rtl">وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا لِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَّوَدَّةً وَّرَحْمَةً ۗ اِنَّ فِيْ ذٰلِكَ لَاٰيٰتٍ لِّقَوْمٍ يَّتَفَكَّرُوْنَ</p>
+                    <p class="small text-muted italic mb-2">
+                        "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
+                    </p>
+                    <span class="fw-bold text-gold small">— Q.S. Ar-Rum: 21 —</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- COUNTDOWN SECTION -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <h5 class="text-uppercase small tracking-wide mb-3 text-muted" style="letter-spacing: 2px;">Menuju Hari Bahagia</h5>
+                <div class="countdown-container d-flex justify-content-center gap-3">
+                    <div class="countdown-box">
+                        <span id="days">00</span>
+                        <p>Hari</p>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="hours">00</span>
+                        <p>Jam</p>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="minutes">00</span>
+                        <p>Menit</p>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="seconds">00</span>
+                        <p>Detik</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center my-4">
+            <div class="col-md-8">
+                <h2 class="font-wedding display-4 mb-3 text-gold">Assalamu'alaikum Wr. Wb.</h2>
+                <p class="text-muted">Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i ke acara pernikahan kami:</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center mt-5">
+            <div class="col-md-5 my-3">
+                <img src="img/IMG_6155.jpg" alt="Mempelai Wanita" class="couple-img mb-3">
+                <h3 class="font-wedding h2 text-gold">Silpi Dwine Rahayu, S.Ak.</h3>
+                <p class="small text-muted mb-1">Putri dari:</p>
+                <p class="fw-bold">Bpk. Oyo Harsoyo & Ibu Mini Aminah</p>
+            </div>
+
+            <div class="col-md-2 my-3">
+                <h1 class="font-wedding display-2 text-gold">&</h1>
+            </div>
+
+            <div class="col-md-5 my-3">
+                <img src="img/IMG_6164.jpg" alt="Mempelai Pria" class="couple-img mb-3">
+                <h3 class="font-wedding h2 text-gold">Diffran Nur Cahyo, S.Kom., M.Kom.</h3>
+                <p class="small text-muted mb-1">Putra dari:</p>
+                <p class="fw-bold">Bpk. Nur Cahyono & Ibu Dwi Astuti Widyaningrum</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="container opacity-25">
+
+    <section id="acara" class="py-5 bg-light-section">
+        <div class="container text-center">
+            <h2 class="font-wedding display-4 mb-5 text-gold">Rangkaian Acara</h2>
+            
+            <div class="card card-event p-4 mb-5 max-width-custom mx-auto">
+                <div class="card-body">
+                    <div class="row g-4 justify-content-center text-center">
+                        <div class="col-md-5 border-end-md">
+                            <i class="fa-solid fa-hands-praying fa-2x text-gold mb-2"></i>
+                            <h3 class="fw-bold h4 mb-3">Akad Nikah</h3>
+                            <p class="mb-1"><i class="fa-regular fa-calendar-days me-2 text-gold"></i>Sabtu, 10 Oktober 2026</p>
+                            <p class="mb-0"><i class="fa-regular fa-clock me-2 text-gold"></i>08.00 - 10.00 WIB</p>
+                        </div>
+                        
+                        <div class="col-md-5">
+                            <i class="fa-solid fa-champagne-glasses fa-2x text-gold mb-2"></i>
+                            <h3 class="fw-bold h4 mb-3">Resepsi Pernikahan</h3>
+                            <p class="mb-1"><i class="fa-regular fa-calendar-days me-2 text-gold"></i>Sabtu, 10 Oktober 2026</p>
+                            <p class="mb-0"><i class="fa-regular fa-clock me-2 text-gold"></i>11.00 - selesai</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-4 border-top mx-auto" style="max-width: 500px;">
+                        <p class="fw-bold mb-1"><i class="fa-solid fa-location-dot me-2 text-gold"></i>Gedung Pertemuan Utama</p>
+                        <p class="small text-muted mb-3">Jl. Pemuda No. 123, Pandansari, Semarang</p>
+                        
+                        <a href="https://maps.google.com" target="_blank" class="btn btn-custom px-4">
+                            <i class="fa-solid fa-map-location-dot me-2"></i>Petunjuk Lokasi (Akad & Resepsi)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card card-event p-4 max-width-custom mx-auto">
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <i class="fa-solid fa-house-chimney-window fa-2x text-gold mb-2"></i>
+                            <h3 class="fw-bold h4 mb-3">Ngunduh Mantu</h3>
+                            <p class="mb-1"><i class="fa-regular fa-calendar-days me-2 text-gold"></i>Minggu, 18 Oktober 2026</p>
+                            <p class="mb-4"><i class="fa-regular fa-clock me-2 text-gold"></i>09.00 - selesai</p>
+                            
+                            <div class="pt-3 border-top mx-auto">
+                                <p class="fw-bold mb-1"><i class="fa-solid fa-location-dot me-2 text-gold"></i>Kediaman Mempelai Pria</p>
+                                <p class="small text-muted mb-3">Jl. Merdeka No. 45, Kota Barat, Surakarta</p>
+                                
+                                <a href="https://maps.google.com" target="_blank" class="btn btn-custom px-4">
+                                    <i class="fa-solid fa-map-location-dot me-2"></i>Petunjuk Lokasi Ngunduh Mantu
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="galeri" class="py-5 bg-light-section">
+        <div class="container text-center">
+            <h2 class="font-wedding display-4 mb-3 text-gold">Galeri Kebahagiaan</h2>
+            <p class="text-muted mb-5">Momen-momen indah perjalanan cinta kami.</p>
+
+            <div class="row g-3 justify-content-center">
+                <div class="col-6 col-md-3">
+                    <div class="gallery-item">
+                        <img src="img/IMG_6088.jpg" alt="Wedding Gallery 1" class="img-fluid rounded shadow-sm">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="gallery-item">
+                        <img src="img/IMG_6092.jpg" alt="Wedding Gallery 2" class="img-fluid rounded shadow-sm">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="gallery-item">
+                        <img src="img/IMG_6096.jpg" alt="Wedding Gallery 3" class="img-fluid rounded shadow-sm">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="gallery-item">
+                        <img src="img/IMG_6101.jpg" alt="Wedding Gallery 4" class="img-fluid rounded shadow-sm">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="love-story" class="py-5 bg-white">
+        <div class="container text-center">
+            <h2 class="font-wedding display-4 mb-3 text-gold">Kisah Cinta Kami</h2>
+            <p class="text-muted mb-5">Bagaimana awal mula kisah dua insan ini dipersatukan.</p>
+
+            <div class="row justify-content-center">
+                <div class="col-md-10 text-start">
+                    <div class="timeline-container">
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-badge"><i class="fa-solid fa-eye"></i></div>
+                            <div class="timeline-card p-4 rounded shadow-sm bg-light">
+                                <span class="badge bg-gold text-white mb-2">Juni 2024</span>
+                                <h4 class="fw-bold h5">Pertama Kali Bertemu</h4>
+                                <p class="text-muted small mb-0">Tuhan mempertemukan kami dalam sebuah acara seminar kampus. Tatapan pertama yang biasa, namun ternyata menjadi awal dari segalanya.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-badge"><i class="fa-solid fa-heart"></i></div>
+                            <div class="timeline-card p-4 rounded shadow-sm bg-light">
+                                <span class="badge bg-gold text-white mb-2">Januari 2025</span>
+                                <h4 class="fw-bold h5">Menjalin Komitmen</h4>
+                                <p class="text-muted small mb-0">Setelah melewati masa penjajakan dan merasa memiliki visi serta nilai hidup yang sama, kami memutuskan untuk berkomitmen melangkah bersama.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-badge"><i class="fa-solid fa-ring"></i></div>
+                            <div class="timeline-card p-4 rounded shadow-sm bg-light">
+                                <span class="badge bg-gold text-white mb-2">Maret 2026</span>
+                                <h4 class="fw-bold h5">Hari Lamaran (Khitbah)</h4>
+                                <p class="text-muted small mb-0">Dengan restu kedua belah pihak keluarga besar, kami mengikat janji suci dalam ikatan lamaran resmi, bersiap menuju pelaminan.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rsvp" class="py-5 bg-white">
+        <div class="container text-center">
+            <h2 class="font-wedding display-4 mb-3 text-gold">Konfirmasi Kehadiran</h2>
+            <p class="text-muted mb-5">Format kehadiran Bapak/Ibu/Saudara/i sangat berarti bagi kami.</p>
+
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-start">
+                    <form id="form-rsvp" class="p-4 border rounded shadow-sm bg-light">
+                        <div class="mb-3">
+                            <label for="nama" class="form-label fw-semibold">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="nama" placeholder="Masukkan nama Anda" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="jumlah-tamu" class="form-label fw-semibold">Jumlah Tamu</label>
+                            <select class="form-select" id="jumlah-tamu" required>
+                                <option value="" disabled selected>Pilih jumlah orang</option>
+                                <option value="1">1 Orang</option>
+                                <option value="2">2 Orang</option>
+                                <option value="3">3 Orang atau lebih</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label d-block fw-semibold">Konfirmasi Kehadiran</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="kehadiran" id="hadir" value="Hadir" checked>
+                                <label class="form-check-label" for="hadir">Ya, Saya Akan Hadir</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="kehadiran" id="absen" value="Tidak Hadir">
+                                <label class="form-check-label" for="absen">Maaf, Tidak Bisa Hadir</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-custom w-100 text-uppercase">
+                            <i class="fa-solid fa-paper-plane me-2"></i>Kirim Konfirmasi
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="wishes" class="py-5 bg-light-section">
+        <div class="container text-center">
+            <h2 class="font-wedding display-4 mb-3 text-gold">Doa & Ucapan</h2>
+            <p class="text-muted mb-5">Berikan doa restu dan ucapan tulus Anda untuk kedua mempelai.</p>
+
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-start">
+                    <form id="form-wish" class="p-4 border rounded shadow-sm bg-white mb-4">
+                        <div class="mb-3">
+                            <label for="wish-nama" class="form-label fw-semibold">Nama</label>
+                            <input type="text" class="form-control" id="wish-nama" placeholder="Nama Anda" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="wish-pesan" class="form-label fw-semibold">Ucapan / Doa</label>
+                            <textarea class="form-control" id="wish-pesan" rows="4" placeholder="Tulis doa & ucapan terbaikmu di sini..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-custom w-100 text-uppercase">
+                            <i class="fa-solid fa-comment-medical me-2"></i>Kirim Ucapan
+                        </button>
+                    </form>
+
+                    <div id="wishes-box" class="p-3 border rounded bg-white shadow-sm overflow-auto" style="max-height: 350px;">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="egift" class="py-5 bg-white">
+        <div class="container text-center">
+            <h2 class="font-wedding display-4 mb-3 text-gold">Kado Digital</h2>
+            <p class="text-muted mb-4">Bagi Bapak/Ibu/Saudara/i yang ingin memberikan tanda kasih, dapat mengirimkannya melalui dompet digital atau rekening berikut:</p>
+
+            <button class="btn btn-custom text-uppercase mb-4 px-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEgift" aria-expanded="false" aria-controls="collapseEgift">
+                <i class="fa-solid fa-gift me-2"></i>Klik Di Sini (Kirim Hadiah)
+            </button>
+
+            <!-- Area Rekening & QRIS (Muncul saat tombol diklik) -->
+            <div class="collapse" id="collapseEgift">
+                <div class="row justify-content-center g-3" style="max-width: 700px; margin: 0 auto;">
+                    
+                    <!-- Rekening 1 (Bank BCA) -->
+                    <div class="col-md-6">
+                        <div class="card p-4 h-100 shadow-sm border-0 bg-light">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div>
+                                    <h5 class="fw-bold text-secondary mb-3"><i class="fa-solid fa-credit-card me-2 text-gold"></i>Bank BCA</h5>
+                                    <h3 class="fw-bold h5 text-dark mb-1" id="rek-bca">1234567890</h3>
+                                    <p class="small text-muted mb-3">a.n. Romeo Montague</p>
+                                </div>
+                                <button class="btn btn-outline-warning btn-sm btn-salin text-dark w-100" data-target="rek-bca">
+                                    <i class="fa-regular fa-copy me-1"></i>Salin No. Rekening
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rekening 2 (Bank Mandiri) -->
+                    <div class="col-md-6">
+                        <div class="card p-4 h-100 shadow-sm border-0 bg-light">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div>
+                                    <h5 class="fw-bold text-secondary mb-3"><i class="fa-solid fa-credit-card me-2 text-gold"></i>Bank Mandiri</h5>
+                                    <h3 class="fw-bold h5 text-dark mb-1" id="rek-mandiri">0987654321</h3>
+                                    <p class="small text-muted mb-3">a.n. Juliet Capulet</p>
+                                </div>
+                                <button class="btn btn-outline-warning btn-sm btn-salin text-dark w-100" data-target="rek-mandiri">
+                                    <i class="fa-regular fa-copy me-1"></i>Salin No. Rekening
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BARIS BARU: QRIS (Diletakkan di bawah rekening) -->
+                    <div class="col-12 mt-4">
+                        <div class="card p-4 shadow-sm border-0 bg-light mx-auto" style="max-width: 400px;">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-secondary mb-3"><i class="fa-solid fa-qrcode me-2 text-gold"></i>QRIS Pembayaran</h5>
+                                <!-- Gambar QRIS dari folder img/ -->
+                                <div class="bg-white p-3 rounded border inline-block mx-auto mb-3" style="max-width: 220px;">
+                                    <img src="img/qris.jpg" alt="QRIS Kado Digital" class="img-fluid custom-qris-img">
+                                </div>
+                                <p class="small fw-bold text-dark mb-0">a.n. Pernikahan Romeo & Juliet</p>
+                                <p class="text-muted" style="font-size: 11px;">*Bisa di-scan / screenshot untuk disimpan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center text-white py-4">
+        <div class="container">
+            <p class="mb-2 text-white-50">Terima Kasih Atas Doa & Restu Anda</p>
+            <h3 class="font-wedding h2 text-gold mb-3">Romeo & Juliet</h3>
+            <p class="small mb-0 opacity-50">© 2026 Digital Invitation. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="script.js"></script>
+
+    <!-- AUDIO ELEMENT (Hidden) -->
+    <audio id="wedding-audio" loop>
+        <source src="audio/Tiara Andini, Arsy Widianto - Lagu Pernikahan Kita (320).mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- TOMBOL KONTROL MUSIK (Floating Button) -->
+    <button id="btn-musik-kontrol" class="btn-audio-float" style="display: none;">
+        <i class="fa-solid fa-disc fa-spin" id="icon-musik"></i>
+    </button>
+
+</body>
+</html>
