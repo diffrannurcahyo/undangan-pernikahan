@@ -5,23 +5,22 @@
 document.addEventListener("DOMContentLoaded", function () {
     
     // ==========================================================================
-    // 1. LOGIKA MENAMPILKAN NAMA TAMU DARI URL (EXCEL/GOOGLE SHEETS)
+    // 1. LOGIKA MENAMPILKAN NAMA TAMU DARI URL (Mendukung 'to' & 'kepada')
     // ==========================================================================
     const parameterURL = new URLSearchParams(window.location.search);
-    const namaDiURL = parameterURL.get('to');
+    // Mengambil dari parameter 'to' atau 'kepada' sesuai screenshot tautan
+    const namaDiURL = parameterURL.get('to') || parameterURL.get('kepada');
     const elemenNamaTamu = document.getElementById('nama-tamu');
 
     if (namaDiURL && elemenNamaTamu) {
-        // Mengubah kode %20 kembali menjadi spasi normal
         elemenNamaTamu.innerText = decodeURIComponent(namaDiURL);
     } else if (elemenNamaTamu) {
-        // Teks cadangan jika tautan dibuka tanpa nama spesifik
         elemenNamaTamu.innerText = "Teman-teman & Keluarga";
     }
 
 
     // ==========================================================================
-    // 2. LOGIKA BUKA UNDANGAN & AUTOPLAY MUSIK
+    // 2. LOGIKA BUKA UNDANGAN & AUTOPLAY MUSIK (Bebas Bug Putih)
     // ==========================================================================
     const tombolBuka = document.getElementById('tombol-buka');
     const audioElemen = document.getElementById('wedding-audio');
@@ -32,42 +31,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (tombolBuka) {
         tombolBuka.addEventListener('click', function() {
-            // Membuka kunci scroll halaman
+            // 1. Membuka kunci scroll halaman utama
             document.body.classList.remove('locked');
 
-            // Efek animasi transisi menutup cover ke atas
+            // 2. Reset paksa posisi scroll window ke koordinat paling atas (0,0)
+            window.scrollTo(0, 0);
+
+            // 3. Hilangkan cover secara halus (fade-out) agar sinkron dengan hilangnya status fixed
             const coverSection = document.getElementById('cover');
             if (coverSection) {
-                coverSection.style.transition = "all 0.8s ease";
-                coverSection.style.transform = "translateY(-100vh)";
+                coverSection.style.opacity = "0";
+                coverSection.style.visibility = "hidden";
+                
+                // Hapus total display setelah efek fade selesai (600ms) agar tidak menghalangi klik halaman utama
                 setTimeout(() => {
                     coverSection.style.display = "none";
-                }, 800);
+                }, 600);
             }
 
-            // Memulai putaran musik setelah ada interaksi klik
+            // 4. Memulai putaran musik setelah ada interaksi klik
             if (audioElemen) {
                 audioElemen.play().then(() => {
                     musikSedangBerputar = true;
                     if (btnMusikKontrol) btnMusikKontrol.style.display = "flex";
+                    if (iconMusik) iconMusik.className = "fa-solid fa-disc fa-spin";
                 }).catch(error => {
                     console.log("Autoplay diblokir oleh sistem browser:", error);
                 });
-            }
-        });
-    }
-
-    // Kontrol On/Off Musik via Floating Button
-    if (btnMusikKontrol && audioElemen) {
-        btnMusikKontrol.addEventListener('click', function() {
-            if (musikSedangBerputar) {
-                audioElemen.pause();
-                iconMusik.className = "fa-solid fa-volume-xmark";
-                musikSedangBerputar = false;
-            } else {
-                audioElemen.play();
-                iconMusik.className = "fa-solid fa-disc fa-spin";
-                musikSedangBerputar = true;
             }
         });
     }
@@ -233,4 +223,82 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    // ==========================================================================
+    // SELEKTOR OTOMATIS UNTUK ANIMASI SCROLL TRANSISI ELEMEN & GAMBAR (IMG)
+    // ==========================================================================
+    const targetElemenAnimasi = document.querySelectorAll(`
+        #mempelai .row, 
+        #mempelai .quotes-quran,
+        #mempelai .countdown-box,
+        .card-event, 
+        .gallery-item, 
+        .timeline-item, 
+        #rsvp form, 
+        #wishes form, 
+        #wishes-box, 
+        #egift .card,
+        #mempelai img,
+        .gallery-item img,
+        .custom-qris-img
+    `);
+
+    const pengamatScroll = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('scroll-terlihat');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        root: null,
+        threshold: 0.1, 
+        rootMargin: "0px 0px -40px 0px" 
+    });
+
+    targetElemenAnimasi.forEach(elemen => {
+        pengamatScroll.observe(elemen);
+    });
+
 });
+
+// ==========================================================================
+// FORMULA MANDIRI PEMUTAR MUSIK (ANTI-BLOCK & SCOPE INDEPENDENT)
+// ==========================================================================
+(function() {
+    window.addEventListener('load', function() {
+        const audio = document.getElementById('audio-wedding');
+        const musicBtn = document.getElementById('music-button');
+        const musicIcon = document.getElementById('music-icon');
+
+        if (musicBtn && audio && musicIcon) {
+            
+            // Fungsi eksekusi klik tombol musik
+            musicBtn.addEventListener('click', function(e) {
+                e.preventDefault(); // Mencegah interupsi aksi default browser
+                e.stopPropagation(); // Menghentikan penumpukan trigger dari elemen di bawahnya
+                
+                if (audio.paused) {
+                    audio.play().then(() => {
+                        musicIcon.className = "fas fa-music music-rotate";
+                    }).catch(err => console.log("Play audio gagal:", err));
+                } else {
+                    audio.pause();
+                    musicIcon.className = "fas fa-volume-mute";
+                }
+            });
+
+            // Otomatis putar saat tombol Buka Undangan ditekan
+            // Mengincar class tombol .btn atau selektor penutup cover hero kamu
+            const tombolBuka = document.querySelector('.hero .btn') || document.querySelector('.btn-buka') || document.getElementById('btn-buka-undangan');
+            if (tombolBuka) {
+                tombolBuka.addEventListener('click', function() {
+                    audio.play().then(() => {
+                        musicIcon.className = "fas fa-music music-rotate";
+                    }).catch(err => console.log("Auto-play diblokir browser, menunggu interaksi user."));
+                });
+            }
+        } else {
+            console.error("Elemen audio, button, atau icon musik tidak ditemukan di HTML. Periksa id-nya!");
+        }
+    });
+})();

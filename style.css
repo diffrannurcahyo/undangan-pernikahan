@@ -1,27 +1,52 @@
+/* ==========================================================================
+   1. DAFTARKAN FONT LOKAL DI BARIS PALING ATAS
+   ========================================================================== */
+@font-face {
+    font-family: 'Rouge Script';
+    /* Pastikan file RougeScript.ttf sudah kamu taruh di dalam folder bernama 'fonts' */
+    src: url('fonts/RougeScript.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block; /* Memaksa browser menunggu font lokal siap, menghilangkan kedipan font default */
+}
+
 /* Variabel Warna Global */
 :root {
-    --primary-color: #d4af37;     /* Warna Emas/Gold */
-    --secondary-color: #2c3e50;   /* Warna Gelap Kontras */
-    --bg-light: #fdfbf7;          /* Warna Background Utama Krem Lembut */
-    --bg-footer: #1a252f;
+    --primary-color: #d4af37;     /* Tetap Emas/Gold Mewah untuk Aksen & Nama */
+    --secondary-color: #4a3b32;   /* Cokelat Tua Gelap untuk Teks Utama & Judul */
+    --bg-light: #f9f6f0;          /* Cokelat Muda Cream Sangat Lembut untuk Background Utama */
+    --bg-footer: #2b211a;         /* Cokelat Espresso Gelap Solid untuk Area Footer & Cover */
 }
 
 /* Tambahkan ini di bagian atas dekat body */
+/* Mengunci Scroll Saat Pertama Dibuka */
 body.locked {
-    overflow: hidden; /* Mengunci scroll */
-    height: 100vh;
+    overflow: hidden !important;
+    height: 100vh !important;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   PENGATURAN FONT BAWAAN SISTEM (ANTI-BERKEDIP)
+   ========================================================================== */
+
+/* Font Utama Website (Modern & Bersih) */
+/* Font Utama Website menggunakan default San-Serif HP */
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-light);
     color: var(--secondary-color);
     overflow-x: hidden;
 }
 
-/* Pewarnaan Font Kustom */
+/* Font Latin Sambung global untuk seluruh website */
 .font-wedding {
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Rouge Script', 'Savoye LET', 'Snell Roundhand', 'Gabriola', cursive !important;
 }
 
 .text-gold {
@@ -30,20 +55,72 @@ body {
 
 /* Hero / Cover Section */
 /* Modifikasi bagian Hero agar menjadi overlay penuh */
+/* ==========================================================================
+   STYLE UNTUK COVER / HERO SECTION
+   ========================================================================== */
 .hero {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    /* Menggunakan warna solid Navy gelap tanpa transparansi */
-    background-color: #1a252f; 
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
     z-index: 9999;
-    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    background-color: #1a252f;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+
+/* Judul Utama "Silpi & Diffran" Khusus di Bagian Cover */
+.text-hero-title {
+    font-family: 'Rouge Script', 'Savoye LET', 'Snell Roundhand', 'Gabriola', cursive !important;
+    font-size: 5rem;
+    color: #ffffff;
+    font-weight: normal;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Teks Nama Tamu di dalam kotak */
+#nama-tamu {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 700; /* Tebal */
+    color: var(--primary-color) !important;
+    letter-spacing: 0.5px;
+}
+
+/* Mengatur Posisi Gambar Latar Belakang Cover */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mencegah gambar gepeng/distorsi di HP & PC */
+}
+
+/* Lapisan Gelap Transparan di Atas Gambar agar Teks Terbaca Jelas */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65));
+}
+
+/* Memastikan Konten Teks & Tombol Berada di Depan Gambar */
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
 
 .text-hero-title {
@@ -128,7 +205,6 @@ footer {
 
 .countdown-box p {
     font-size: 0.75rem;
-    text-autospace: uppercase;
     margin: 0;
     color: #7f8c8d;
     letter-spacing: 1px;
@@ -276,46 +352,80 @@ footer {
     font-style: italic;
 }
 
-/* --- FLOATING AUDIO BUTTON --- */
-.btn-audio-float {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: var(--accent-gold) !important; /* Latar belakang lingkaran emas */
-    color: #ffffff !important;                       /* Warna ikon di dalamnya putih */
-    border: none;
-    z-index: 9999;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
+/* ==========================================================================
+   7. TOMBOL MUSIK FLOATING AKRILIK (FIXED SIZE & TOP Z-INDEX)
+   ========================================================================== */
+.btn-music-floating {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    
+    /* Mengunci ukuran tombol secara mutlak agar tidak melar */
+    width: 55px !important;
+    height: 55px !important;
+    min-width: 55px !important;
+    min-height: 55px !important;
+    max-width: 55px !important;
+    max-height: 55px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    
+    /* Sentuhan Tema Akrilik */
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    
+    /* Memaksa ikon Font Awesome berada tepat di tengah-tengah bulatan */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
+    cursor: pointer !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+    
+    /* KUNCI UTAMA: Nilai z-index tertinggi agar berada di atas segalanya */
+    z-index: 999999 !important; 
+    
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.btn-audio-float:hover {
-    transform: scale(1.1);
+/* Mengunci ukuran dan bentuk ikon Font Awesome di dalam tombol */
+.btn-music-floating i {
+    font-size: 1.3rem !important;
+    color: var(--primary-color) !important; /* Berwarna Emas */
+    display: inline-block !important;
+    width: auto !important;
+    height: auto !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-/* Animasi berputar untuk ikon piringan hitam/music disc */
-.fa-spin {
-    animation: spin 3s linear infinite;
+/* Animasi berputar pelan saat musik aktif */
+.music-rotate {
+    animation: rotasiMusik 4s linear infinite !important;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+@keyframes rotasiMusik {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Efek saat tombol di-hover atau di-tap */
+.btn-music-floating:hover {
+    transform: scale(1.08) !important;
+    background-color: rgba(255, 255, 255, 0.3) !important;
 }
 
 /* ==========================================================================
    STYLE UNTUK SECTION BARU (AUTOSLIDE SHOWCASE)
    ========================================================================== */
+/* Reset Section Tepat di Bawah Cover Agar Menempel Tanpa Celah Putih */
 #photo-showcase {
-    border-bottom: 1px solid var(--border-color);
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    background-color: #4a3b32; /* Sesuai tone overlay cokelat tua Anda */
 }
 
 /* Lapisan Cokelat Tua Transparan 60% agar Teks Putih Terlihat Jelas */
@@ -333,4 +443,278 @@ footer {
 #carouselShowcase .carousel-item {
     transition: opacity 1.2s ease-in-out;
 }
+
+/* ==========================================================================
+   SISTEM ANIMASI OTOMATIS & RESPONSIF ZOOM PADA GAMBAR (IMG)
+   ========================================================================== */
+
+/* State Awal: Semua elemen utama dan gambar disembunyikan sedikit ke bawah & mengecil */
+#mempelai .row, 
+#mempelai .quotes-quran,
+#mempelai .countdown-box,
+.card-event, 
+.gallery-item, 
+.timeline-item, 
+#rsvp form, 
+#wishes form, 
+#wishes-box, 
+#egift .card,
+#mempelai img,      /* Foto mempelai lingkaran */
+.gallery-item img,  /* Gambar di dalam galeri */
+.custom-qris-img    /* Gambar QRIS */ {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    /* Transisi 1.2 detik menggunakan cubic-bezier premium untuk efek pergerakan yang sangat halus */
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+/* Class Aktif: Dipicu oleh JavaScript saat elemen masuk ke area pandang layar */
+.scroll-terlihat {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+}
+
+/* ==========================================================================
+   EFEK RESPONSIF INTERAKTIF ZOOM MURNI CSS (HOVER & TOUCH SCREENS)
+   ========================================================================== */
+
+/* Menambahkan efek zoom interaktif khusus untuk tag gambar yang sudah berstatus .scroll-terlihat */
+#mempelai img.scroll-terlihat,
+.gallery-item img.scroll-terlihat,
+.custom-qris-img.scroll-terlihat {
+    cursor: pointer;
+    /* Memberikan transisi balik yang lembut (0.4 detik) saat kursor bergeser atau sentuhan dilepas */
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+/* Efek responsif membesar saat di-hover (di PC) atau di-tap/sentuh lama (di HP) */
+#mempelai img.scroll-terlihat:hover,
+.gallery-item img.scroll-terlihat:hover,
+.custom-qris-img.scroll-terlihat:hover,
+#mempelai img.scroll-terlihat:active,
+.gallery-item img.scroll-terlihat:active,
+.custom-qris-img.scroll-terlihat:active {
+    transform: scale(1.06) !important; /* Membesar aman sebanyak 6% secara proporsional */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); /* Memberikan efek bayangan dalam agar foto terlihat timbul */
+    z-index: 5; /* Memastikan foto yang membesar berada di lapisan paling depan */
+}
+
+/* Efek kemunculan beruntun (Staggered Delay) otomatis untuk elemen berdampingan */
+#mempelai .row .col-md-5:nth-child(1) { transition-delay: 0.1s; }
+#mempelai .row .col-md-5:nth-child(3) { transition-delay: 0.3s; }
+#acara .card-event:nth-child(2) { transition-delay: 0.2s; }
+.gallery-item:nth-child(1) { transition-delay: 0.1s; }
+.gallery-item:nth-child(2) { transition-delay: 0.2s; }
+.gallery-item:nth-child(3) { transition-delay: 0.3s; }
+.gallery-item:nth-child(4) { transition-delay: 0.4s; }
+
+/* ==========================================================================
+   4. PENYESUAIAN BACKGROUND COKELAT KHUSUS SECTION RANGKAIAN ACARA
+   ========================================================================== */
+#acara {
+    background-color: #3d2f26 !important; /* Warna Cokelat Klasik yang sama dengan mempelai */
+    color: #ffffff !important;            /* Mengubah teks utama section menjadi putih */
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+/* Memastikan teks judul utama di section acara berwarna putih/emas */
+#acara h2, 
+#acara h3, 
+#acara p {
+    color: #ffffff !important;
+}
+
+/* Mengunci warna tulisan latin atau nama acara agar tetap emas mewah */
+#acara .font-wedding, 
+#acara .text-gold {
+    color: var(--primary-color) !important;
+}
+
+/* Menyesuaikan tampilan kartu event (Akad & Resepsi) agar kontras di atas warna cokelat */
+#acara .card-event, 
+#acara .card {
+    background-color: rgba(255, 255, 255, 0.95) !important; /* Kartu dibuat putih solid/bersih */
+    border: 1px solid var(--primary-color); /* Bingkai emas tipis */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important; /* Bayangan agar kartu terlihat timbul */
+}
+
+/* Memastikan teks di DALAM kartu (Akad/Resepsi) tetap berwarna gelap agar terbaca jelas */
+#acara .card-event *, 
+#acara .card * {
+    color: var(--secondary-color) !important; /* Kembali ke cokelat tua gelap khusus isi kartu */
+}
+
+/* Pengecualian untuk teks emas atau icon di dalam kartu agar tetap berwarna gold */
+#acara .card-event .text-gold,
+#acara .card-event i,
+#acara .card .text-gold,
+#acara .card i {
+    color: var(--primary-color) !important;
+}
+
+/* ==========================================================================
+   5. EFEK TRANSPARAN AKRILIK LUXURY (GLASSMORPHISM) KARTU ACARA
+   ========================================================================== */
+
+#acara .card-event, 
+#acara .card {
+    /* Latar belakang putih super tipis untuk efek kaca akrilik */
+    background-color: rgba(255, 255, 255, 0.12) !important; 
+    
+    /* Garis tepi tipis transparan yang memberikan efek pantulan cahaya di sudut akrilik */
+    border: 1px solid rgba(255, 255, 255, 0.25) !important; 
+    
+    /* KUNCI UTAMA AKRILIK: Efek blur objek di belakang kartu */
+    backdrop-filter: blur(12px) saturate(130%) !important; 
+    -webkit-backdrop-filter: blur(12px) saturate(130%) !important;
+    
+    /* Bayangan lembut agar kartu terlihat mengambang di atas background cokelat */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+    
+    border-radius: 18px; /* Sudut melengkung halus khas akrilik modern */
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Memastikan SEMUA teks di dalam kartu akrilik berwarna PUTIH agar kontras & sangat mudah dibaca */
+#acara .card-event *, 
+#acara .card * {
+    color: #ffffff !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sedikit bayangan teks agar makin tajam */
+}
+
+/* Icon, Tombol Map, dan Judul Latin di dalam kartu akrilik menggunakan warna EMAS SOLID */
+#acara .card-event .text-gold,
+#acara .card-event i,
+#acara .card-event .font-wedding,
+#acara .card .text-gold,
+#acara .card i,
+#acara .card .font-wedding {
+    color: #d4af37 !important;
+    text-shadow: none; /* Menghilangkan bayangan khusus elemen emas */
+}
+
+/* Tombol navigasi/peta di dalam kartu agar ikut menyesuaikan tema akrilik */
+#acara .card-event .btn,
+#acara .card .btn {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    color: #ffffff !important;
+    backdrop-filter: blur(5px);
+}
+
+#acara .card-event .btn:hover,
+#acara .card .btn:hover {
+    background-color: var(--primary-color) !important; /* Berubah emas saat kursor di atasnya */
+    border-color: var(--primary-color) !important;
+    color: #2b211a !important; /* Teks tombol jadi cokelat gelap saat di-hover */
+}
+
+/* Efek interaktif saat kartu akrilik disentuh atau di-hover kursor */
+#acara .card-event:hover, 
+#acara .card:hover {
+    transform: translateY(-8px) scale(1.02);
+    background-color: rgba(255, 255, 255, 0.18) !important; /* Akrilik sedikit lebih terang saat berinteraksi */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* ==========================================================================
+   6. PENYESUAIAN BACKGROUND COKELAT & AKRILIK UNTUK RSVP & WISHES
+   ========================================================================== */
+
+/* Membuat Section Konfirmasi Kehadiran & Doa menjadi Cokelat Klasik Solid */
+#rsvp, 
+#wishes {
+    background-color: #3d2f26 !important; /* Cokelat yang sama persis dengan mempelai & acara */
+    color: #ffffff !important;            /* Mengubah teks judul luar menjadi putih */
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+/* Memastikan semua judul utama di area ini berwarna putih/emas */
+#rsvp h2, #rsvp p,
+#wishes h2, #wishes p {
+    color: #ffffff !important;
+}
+
+#rsvp .font-wedding, #rsvp .text-gold,
+#wishes .font-wedding, #wishes .text-gold {
+    color: var(--primary-color) !important;
+}
+
+/* KOTAK FORMULIR & KOTAK PESAN BERGAYA TRANSPARAN AKRILIK */
+#rsvp form, 
+#wishes form, 
+#wishes-box,
+.wishes-item, /* Jika ada elemen list komentar di dalamnya */
+.card-rsvp-internal {
+    background-color: rgba(255, 255, 255, 0.12) !important; 
+    border: 1px solid rgba(255, 255, 255, 0.25) !important; 
+    backdrop-filter: blur(12px) saturate(130%) !important; 
+    -webkit-backdrop-filter: blur(12px) saturate(130%) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+    border-radius: 18px;
+    padding: 30px;
+    margin-top: 20px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Memastikan seluruh label teks di dalam kotak akrilik berwarna putih */
+#rsvp form *, 
+#wishes form *, 
+#wishes-box * {
+    color: #ffffff !important;
+}
+
+/* MENYESUAIKAN KOLOM INPUT (Nama, Kehadiran, Pesan) AGAR SERASI DENGAN AKRILIK */
+#rsvp .form-control, #rsvp .form-select,
+#wishes .form-control, #wishes .form-select {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #ffffff !important;
+    border-radius: 8px;
+}
+
+/* Mengubah warna teks placeholder (tulisan petunjuk di dalam kolom input) agar abu-abu terang transparan */
+#rsvp .form-control::placeholder,
+#wishes .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Ketika kolom input sedang diklik atau fokus oleh tamu */
+#rsvp .form-control:focus, #rsvp .form-select:focus,
+#wishes .form-control:focus, #wishes .form-select:focus {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+    border-color: var(--primary-color) !important; /* Garis tepi berubah emas saat mengetik */
+    box-shadow: 0 0 10px rgba(214, 175, 55, 0.4) !important;
+}
+
+/* Opsi dropdown select (pilihan hadir/tidak) agar teksnya tetap terbaca di beberapa tipe HP */
+#rsvp .form-select option,
+#wishes .form-select option {
+    background-color: #3d2f26 !important; /* Background dropdown disamakan dengan warna section cokelat */
+    color: #ffffff !important;
+}
+
+/* TOMBOL KIRIM / SUBMIT AGAR BERWARNA EMAS MEWAH */
+#rsvp .btn-submit, #rsvp form .btn,
+#wishes .btn-submit, #wishes form .btn {
+    background-color: var(--primary-color) !important;
+    border: 1px solid var(--primary-color) !important;
+    color: #2b211a !important; /* Teks di dalam tombol berwarna cokelat gelap solid agar kontras */
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+#rsvp .btn-submit:hover, #rsvp form .btn:hover,
+#wishes .btn-submit:hover, #wishes form .btn:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important; /* Berubah transparan saat kursor di atasnya */
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+}
+
 

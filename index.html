@@ -7,10 +7,6 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <link rel="stylesheet" href="style.css">
@@ -28,18 +24,25 @@
 </head>
 <body class="locked">
 
-    <section id="cover" class="hero px-3">
-        <div class="text-center">
+    <section id="cover" class="hero">
+        <div class="hero-bg">
+            <img src="img/background.png" alt="Background Cover">
+            <div class="hero-overlay"></div>
+        </div>
+
+        <div class="text-center px-3 hero-content">
             <h5 class="text-uppercase tracking-wide mb-3 text-white-50" style="letter-spacing: 3px;">The Wedding of</h5>
             <h1 class="font-wedding text-hero-title">Silpi & Diffran</h1>
             <p class="lead mb-4 text-white">10 Oktober 2026</p>
-            <div class="text-white mb-4 px-3 py-2 mx-auto" style="max-width: 500px; background: rgba(0,0,0,0.3); border-radius: 10px;">
+            
+            <div class="text-white mb-4 px-3 py-3 mx-auto shadow" style="max-width: 500px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px;">
                 <p class="mb-1 small opacity-75">Kpd Bpk/Ibu/Saudara/i:</p>
-                <h4 id="nama-tamu" class="fw-bold text-gold my-2">Nama Tamu</h4>
-                <p class="mb-0 small opacity-75 text-italic">"Tanpa Mengurangi Rasa Hormat, Kami Mengundang Anda Untuk Hadir Di Acara Pernikahan Kami."</p>
+                <h4 id="nama-tamu" class="fw-bold text-gold my-2" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.4);">Nama Tamu</h4>
+                <p class="mb-0 small opacity-75 fst-italic">"Tanpa Mengurangi Rasa Hormat, Kami Mengundang Anda Untuk Hadir Di Acara Pernikahan Kami."</p>
             </div>
+            
             <button id="tombol-buka" class="btn btn-custom text-uppercase">
-                <i class="fa-solid fa-envelope-open me-2"></i>Buka Undangan
+                💌 Buka Undangan
             </button>
         </div>
     </section>
@@ -381,11 +384,11 @@
                         <div class="card p-4 h-100 shadow-sm border-0 bg-light">
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div>
-                                    <h5 class="fw-bold text-secondary mb-3"><i class="fa-solid fa-credit-card me-2 text-gold"></i>Bank Mandiri</h5>
+                                    <h5 class="fw-bold text-secondary mb-3"><i class="fa-solid fa-credit-card me-2 text-gold"></i>Bank BNI
                                     <h3 class="fw-bold h5 text-dark mb-1" id="rek-bni">1888841560</h3>
                                     <p class="small text-muted mb-3">a.n. Diffran Nur Cahyo</p>
                                 </div>
-                                <button class="btn btn-outline-warning btn-sm btn-salin text-dark w-100" data-target="rek-mandiri">
+                                <button class="btn btn-outline-warning btn-sm btn-salin text-dark w-100" data-target="rek-bni">
                                     <i class="fa-regular fa-copy me-1"></i>Salin No. Rekening
                                 </button>
                             </div>
@@ -423,15 +426,18 @@
     
     <script src="script.js"></script>
 
+    
+    <!-- TOMBOL MUSIK FLOATING -->
+    <button id="music-button" class="btn-music-floating" aria-label="Toggle Music">
+        <i id="music-icon" class="fas fa-music"></i>
+    </button>
+
     <!-- AUDIO ELEMENT (Hidden) -->
     <audio id="wedding-audio" loop>
         <source src="audio/Tiara Andini, Arsy Widianto - Lagu Pernikahan Kita (320).mp3" type="audio/mpeg">
     </audio>
+    
 
-    <!-- TOMBOL KONTROL MUSIK (Floating Button) -->
-    <button id="btn-musik-kontrol" class="btn-audio-float" style="display: none;">
-        <i class="fa-solid fa-disc fa-spin" id="icon-musik"></i>
-    </button>
 
 </body>
 </html>
