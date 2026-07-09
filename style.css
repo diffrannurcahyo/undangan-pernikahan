@@ -735,4 +735,42 @@ footer {
     color: rgba(255, 255, 255, 0.7) !important;
 }
 
+/* ==========================================================================
+   8. FOOTER - BACKGROUND GAMBAR DENGAN ADAPTASI RASIO
+   ========================================================================== */
+footer {
+    /* Overlay cokelat transparan (0.85) agar teks tetap terbaca */
+    background: linear-gradient(rgba(43, 33, 26, 0.85), rgba(43, 33, 26, 0.85)), 
+                url('img/footer.png') no-repeat center center !important;
+    
+    /* PENGATURAN RASIO GAMBAR */
+    /* 'cover' memastikan seluruh area tertutup tanpa mengubah rasio gambar */
+    background-size: cover !important; 
+    
+    /* Mengatur fokus gambar agar selalu di tengah */
+    background-position: center !important;
+    
+    /* Memberikan ruang yang cukup agar gambar terlihat estetis */
+    padding: 80px 20px !important;
+    
+    /* Menjaga footer tetap pada posisinya */
+    position: relative;
+    width: 100%;
+}
+
+/* Mengunci ukuran teks agar tidak ikut terpotong */
+footer h3 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem) !important; /* Ukuran teks responsif */
+    margin-bottom: 1rem !important;
+}
+
+/* Gaya untuk Wassalamualaikum agar sama dengan pembuka */
+footer h2 {
+    font-family: 'Rouge Script', cursive; /* Sesuaikan dengan font pembuka Anda */
+    font-size: 2.2rem !important;        /* Ukuran h2 yang elegan */
+    color: var(--primary-color) !important;
+    margin-bottom: 25px !important;
+    font-weight: normal !important;
+}
+
 
