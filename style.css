@@ -353,14 +353,14 @@ footer {
 }
 
 /* ==========================================================================
-   7. TOMBOL MUSIK FLOATING AKRILIK (FIXED SIZE & TOP Z-INDEX)
+   7. TOMBOL MUSIK FLOATING AKRILIK (FIXED SIZE & CENTRALIZED ICON)
    ========================================================================== */
 .btn-music-floating {
     position: fixed !important;
     bottom: 30px !important;
     right: 30px !important;
     
-    /* Mengunci ukuran tombol secara mutlak agar tidak melar */
+    /* Mengunci ukuran tombol secara mutlak bulat sempurna */
     width: 55px !important;
     height: 55px !important;
     min-width: 55px !important;
@@ -376,33 +376,31 @@ footer {
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
     
-    /* Memaksa ikon Font Awesome berada tepat di tengah-tengah bulatan */
+    /* Memaksa ikon Font Awesome berada mutlak tepat di tengah bulatan */
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     
     cursor: pointer !important;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
-    
-    /* KUNCI UTAMA: Nilai z-index tertinggi agar berada di atas segalanya */
-    z-index: 999999 !important; 
-    
+    z-index: 999999 !important; /* Berada di lapisan teratas website */
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Mengunci ukuran dan bentuk ikon Font Awesome di dalam tombol */
+/* Mengunci ukuran dan bentuk ikon Font Awesome bawaan */
 .btn-music-floating i {
-    font-size: 1.3rem !important;
-    color: var(--primary-color) !important; /* Berwarna Emas */
+    font-size: 1.2rem !important;
+    color: var(--primary-color) !important; /* Warna Emas */
     display: inline-block !important;
     width: auto !important;
     height: auto !important;
     line-height: 1 !important;
     margin: 0 !important;
     padding: 0 !important;
+    text-align: center !important;
 }
 
-/* Animasi berputar pelan saat musik aktif */
+/* Animasi berputar pelan saat aktif */
 .music-rotate {
     animation: rotasiMusik 4s linear infinite !important;
 }
@@ -412,7 +410,6 @@ footer {
     to { transform: rotate(360deg); }
 }
 
-/* Efek saat tombol di-hover atau di-tap */
 .btn-music-floating:hover {
     transform: scale(1.08) !important;
     background-color: rgba(255, 255, 255, 0.3) !important;
@@ -715,6 +712,27 @@ footer {
     border-color: rgba(255, 255, 255, 0.5) !important;
     color: #ffffff !important;
     transform: translateY(-2px);
+}
+
+/* Styling untuk kartu ucapan agar tidak putih/abu-abu */
+.akrilik-card {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 12px;
+    color: #ffffff !important;
+}
+
+/* Memastikan teks ucapan di dalam kartu berwarna putih */
+.akrilik-card p {
+    color: #ffffff !important;
+}
+
+/* Memastikan nama pengucap dan waktu tetap terlihat */
+.akrilik-card h5 {
+    color: var(--primary-color) !important;
+}
+.akrilik-card small {
+    color: rgba(255, 255, 255, 0.7) !important;
 }
 
 

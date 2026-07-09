@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // ==========================================================================
-    // 2. LOGIKA BUKA UNDANGAN & AUTOPLAY MUSIK (Bebas Bug Putih)
+    // 2. LOGIKA BUKA UNDANGAN & AUTOPLAY MUSIK (PERBAIKAN TOTAL)
     // ==========================================================================
     const tombolBuka = document.getElementById('tombol-buka');
     const audioElemen = document.getElementById('wedding-audio');
@@ -37,27 +37,46 @@ document.addEventListener("DOMContentLoaded", function () {
             // 2. Reset paksa posisi scroll window ke koordinat paling atas (0,0)
             window.scrollTo(0, 0);
 
-            // 3. Hilangkan cover secara halus (fade-out) agar sinkron dengan hilangnya status fixed
+            // 3. Hilangkan cover secara halus (fade-out)
             const coverSection = document.getElementById('cover');
             if (coverSection) {
                 coverSection.style.opacity = "0";
                 coverSection.style.visibility = "hidden";
                 
-                // Hapus total display setelah efek fade selesai (600ms) agar tidak menghalangi klik halaman utama
                 setTimeout(() => {
                     coverSection.style.display = "none";
                 }, 600);
             }
 
-            // 4. Memulai putaran musik setelah ada interaksi klik
+            // 4. Memulai putaran musik setelah klik buka undangan
             if (audioElemen) {
                 audioElemen.play().then(() => {
                     musikSedangBerputar = true;
                     if (btnMusikKontrol) btnMusikKontrol.style.display = "flex";
-                    if (iconMusik) iconMusik.className = "fa-solid fa-disc fa-spin";
+                    if (iconMusik) iconMusik.className = "fa-solid fa-music music-rotate";
                 }).catch(error => {
-                    console.log("Autoplay diblokir oleh sistem browser:", error);
+                    console.log("Autoplay diblokir oleh sistem browser, memunculkan tombol manual:", error);
+                    if (btnMusikKontrol) btnMusikKontrol.style.display = "flex";
                 });
+            }
+        });
+    }
+
+    // 5. Fungsi Klik Manual pada Tombol Floating Musik
+    if (btnMusikKontrol && audioElemen && iconMusik) {
+        btnMusikKontrol.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Mencegah klik tembus ke elemen background
+            
+            if (audioElemen.paused) {
+                audioElemen.play().then(() => {
+                    musikSedangBerputar = true;
+                    iconMusik.className = "fa-solid fa-music music-rotate";
+                }).catch(err => console.log("Gagal memutar audio:", err));
+            } else {
+                audioElemen.pause();
+                musikSedangBerputar = false;
+                iconMusik.className = "fa-solid fa-volume-xmark"; // Menggunakan ikon bawaan Font Awesome saat mute
             }
         });
     }
@@ -113,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const statusKehadiran = document.getElementById('rsvp-status').value;
 
             // Ganti dengan nomor WhatsApp pengantin/panitia asli (awali dengan 62)
-            const nomorTujuanWA = "6281234567890"; 
+            const nomorTujuanWA = "6285600274942"; 
 
             // Susun teks pesan WhatsApp
             const teksPesan = "Halo, saya ingin mengonfirmasi kehadiran untuk undangan pernikahan Silpi & Diffran.\n\n" +
@@ -146,15 +165,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Menampilkan ucapan terbaru di posisi paling atas
+        // ... di dalam fungsi muatUcapan()
         daftarUcapan.reverse().forEach(function(item) {
             const div = document.createElement('div');
-            div.className = 'wish-card p-3 mb-2 shadow-sm border';
+            // Tambahkan class 'akrilik-card' agar warnanya mengikuti background cokelat
+            div.className = 'wish-card p-3 mb-2 shadow-sm border akrilik-card'; 
             div.innerHTML = `
                 <div class="d-flex justify-content-between align-items-center mb-1">
                     <h5 class="fw-bold m-0" style="font-size: 14px;"><i class="fa-solid fa-user-heart me-2 text-gold"></i>${item.nama}</h5>
                     <small class="text-muted" style="font-size: 11px;">${item.waktu}</small>
                 </div>
-                <p class="mb-0 text-secondary italic">"${item.pesan}"</p>
+                <p class="mb-0 text-white italic">"${item.pesan}"</p>
             `;
             wishesBox.appendChild(div);
         });
@@ -260,45 +281,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
-
-// ==========================================================================
-// FORMULA MANDIRI PEMUTAR MUSIK (ANTI-BLOCK & SCOPE INDEPENDENT)
-// ==========================================================================
-(function() {
-    window.addEventListener('load', function() {
-        const audio = document.getElementById('audio-wedding');
-        const musicBtn = document.getElementById('music-button');
-        const musicIcon = document.getElementById('music-icon');
-
-        if (musicBtn && audio && musicIcon) {
-            
-            // Fungsi eksekusi klik tombol musik
-            musicBtn.addEventListener('click', function(e) {
-                e.preventDefault(); // Mencegah interupsi aksi default browser
-                e.stopPropagation(); // Menghentikan penumpukan trigger dari elemen di bawahnya
-                
-                if (audio.paused) {
-                    audio.play().then(() => {
-                        musicIcon.className = "fas fa-music music-rotate";
-                    }).catch(err => console.log("Play audio gagal:", err));
-                } else {
-                    audio.pause();
-                    musicIcon.className = "fas fa-volume-mute";
-                }
-            });
-
-            // Otomatis putar saat tombol Buka Undangan ditekan
-            // Mengincar class tombol .btn atau selektor penutup cover hero kamu
-            const tombolBuka = document.querySelector('.hero .btn') || document.querySelector('.btn-buka') || document.getElementById('btn-buka-undangan');
-            if (tombolBuka) {
-                tombolBuka.addEventListener('click', function() {
-                    audio.play().then(() => {
-                        musicIcon.className = "fas fa-music music-rotate";
-                    }).catch(err => console.log("Auto-play diblokir browser, menunggu interaksi user."));
-                });
-            }
-        } else {
-            console.error("Elemen audio, button, atau icon musik tidak ditemukan di HTML. Periksa id-nya!");
-        }
-    });
-})();

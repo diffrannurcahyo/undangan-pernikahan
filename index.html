@@ -287,13 +287,13 @@
                 <div class="col-md-6 text-start">
                     <form id="form-rsvp" class="p-4 border rounded shadow-sm bg-light">
                         <div class="mb-3">
-                            <label for="nama" class="form-label fw-semibold">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama" placeholder="Masukkan nama Anda" required>
+                            <label for="rsvp-nama" class="form-label fw-semibold">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="rsvp-nama" placeholder="Masukkan nama Anda" required>
                         </div>
                         
                         <div class="mb-3">
-                            <label for="jumlah-tamu" class="form-label fw-semibold">Jumlah Tamu</label>
-                            <select class="form-select" id="jumlah-tamu" required>
+                            <label for="rsvp-jumlah" class="form-label fw-semibold">Jumlah Tamu</label>
+                            <select class="form-select" id="rsvp-jumlah" required>
                                 <option value="" disabled selected>Pilih jumlah orang</option>
                                 <option value="1">1 Orang</option>
                                 <option value="2">2 Orang</option>
@@ -302,15 +302,12 @@
                         </div>
 
                         <div class="mb-4">
-                            <label class="form-label d-block fw-semibold">Konfirmasi Kehadiran</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="kehadiran" id="hadir" value="Hadir" checked>
-                                <label class="form-check-label" for="hadir">Ya, Saya Akan Hadir</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="kehadiran" id="absen" value="Tidak Hadir">
-                                <label class="form-check-label" for="absen">Maaf, Tidak Bisa Hadir</label>
-                            </div>
+                            <label for="rsvp-status" class="form-label fw-semibold">Konfirmasi Kehadiran</label>
+                            <select class="form-select" id="rsvp-status" required>
+                                <option value="" disabled selected>Apakah Anda akan hadir?</option>
+                                <option value="Hadir">Ya, Saya Akan Hadir</option>
+                                <option value="Tidak Hadir">Maaf, Tidak Bisa Hadir</option>
+                            </select>
                         </div>
 
                         <button type="submit" class="btn btn-custom w-100 text-uppercase">
@@ -343,7 +340,7 @@
                         </button>
                     </form>
 
-                    <div id="wishes-box" class="p-3 border rounded bg-white shadow-sm overflow-auto" style="max-height: 350px;">
+                    <div id="wishes-box" class="p-3 border rounded shadow-sm overflow-auto" style="max-height: 350px; background: transparent !important;">
                         </div>
                 </div>
             </div>
@@ -428,16 +425,15 @@
 
     
     <!-- TOMBOL MUSIK FLOATING -->
-    <button id="music-button" class="btn-music-floating" aria-label="Toggle Music">
-        <i id="music-icon" class="fas fa-music"></i>
+    <button id="btn-musik-kontrol" class="btn-music-floating" aria-label="Toggle Music" style="display: none;">
+        <i id="icon-musik" class="fa-solid fa-music"></i>
     </button>
 
-    <!-- AUDIO ELEMENT (Hidden) -->
+        <!-- AUDIO ELEMENT (Hidden) -->
     <audio id="wedding-audio" loop>
         <source src="audio/Tiara Andini, Arsy Widianto - Lagu Pernikahan Kita (320).mp3" type="audio/mpeg">
     </audio>
     
-
 
 </body>
 </html>
