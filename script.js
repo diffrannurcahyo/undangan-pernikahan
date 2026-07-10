@@ -5,23 +5,22 @@
 document.addEventListener("DOMContentLoaded", function () {
     
     // ==========================================================================
-    // 1. LOGIKA MENAMPILKAN NAMA TAMU DARI URL (EXCEL/GOOGLE SHEETS)
+    // 1. LOGIKA MENAMPILKAN NAMA TAMU DARI URL (Mendukung 'to' & 'kepada')
     // ==========================================================================
     const parameterURL = new URLSearchParams(window.location.search);
-    const namaDiURL = parameterURL.get('to');
+    // Mengambil dari parameter 'to' atau 'kepada' sesuai screenshot tautan
+    const namaDiURL = parameterURL.get('to') || parameterURL.get('kepada');
     const elemenNamaTamu = document.getElementById('nama-tamu');
 
     if (namaDiURL && elemenNamaTamu) {
-        // Mengubah kode %20 kembali menjadi spasi normal
         elemenNamaTamu.innerText = decodeURIComponent(namaDiURL);
     } else if (elemenNamaTamu) {
-        // Teks cadangan jika tautan dibuka tanpa nama spesifik
         elemenNamaTamu.innerText = "Teman-teman & Keluarga";
     }
 
 
     // ==========================================================================
-    // 2. LOGIKA BUKA UNDANGAN & AUTOPLAY MUSIK
+    // 2. LOGIKA BUKA UNDANGAN & AUTOPLAY MUSIK (PERBAIKAN TOTAL)
     // ==========================================================================
     const tombolBuka = document.getElementById('tombol-buka');
     const audioElemen = document.getElementById('wedding-audio');
@@ -32,42 +31,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (tombolBuka) {
         tombolBuka.addEventListener('click', function() {
-            // Membuka kunci scroll halaman
+            // 1. Membuka kunci scroll halaman utama
             document.body.classList.remove('locked');
 
-            // Efek animasi transisi menutup cover ke atas
+            // 2. Reset paksa posisi scroll window ke koordinat paling atas (0,0)
+            window.scrollTo(0, 0);
+
+            // 3. Hilangkan cover secara halus (fade-out)
             const coverSection = document.getElementById('cover');
             if (coverSection) {
-                coverSection.style.transition = "all 0.8s ease";
-                coverSection.style.transform = "translateY(-100vh)";
+                coverSection.style.opacity = "0";
+                coverSection.style.visibility = "hidden";
+                
                 setTimeout(() => {
                     coverSection.style.display = "none";
-                }, 800);
+                }, 600);
             }
 
-            // Memulai putaran musik setelah ada interaksi klik
+            // 4. Memulai putaran musik setelah klik buka undangan
             if (audioElemen) {
                 audioElemen.play().then(() => {
                     musikSedangBerputar = true;
                     if (btnMusikKontrol) btnMusikKontrol.style.display = "flex";
+                    if (iconMusik) iconMusik.className = "fa-solid fa-music music-rotate";
                 }).catch(error => {
-                    console.log("Autoplay diblokir oleh sistem browser:", error);
+                    console.log("Autoplay diblokir oleh sistem browser, memunculkan tombol manual:", error);
+                    if (btnMusikKontrol) btnMusikKontrol.style.display = "flex";
                 });
             }
         });
     }
 
-    // Kontrol On/Off Musik via Floating Button
-    if (btnMusikKontrol && audioElemen) {
-        btnMusikKontrol.addEventListener('click', function() {
-            if (musikSedangBerputar) {
-                audioElemen.pause();
-                iconMusik.className = "fa-solid fa-volume-xmark";
-                musikSedangBerputar = false;
+    // 5. Fungsi Klik Manual pada Tombol Floating Musik
+    if (btnMusikKontrol && audioElemen && iconMusik) {
+        btnMusikKontrol.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Mencegah klik tembus ke elemen background
+            
+            if (audioElemen.paused) {
+                audioElemen.play().then(() => {
+                    musikSedangBerputar = true;
+                    iconMusik.className = "fa-solid fa-music music-rotate";
+                }).catch(err => console.log("Gagal memutar audio:", err));
             } else {
-                audioElemen.play();
-                iconMusik.className = "fa-solid fa-disc fa-spin";
-                musikSedangBerputar = true;
+                audioElemen.pause();
+                musikSedangBerputar = false;
+                iconMusik.className = "fa-solid fa-volume-xmark"; // Menggunakan ikon bawaan Font Awesome saat mute
             }
         });
     }
@@ -123,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const statusKehadiran = document.getElementById('rsvp-status').value;
 
             // Ganti dengan nomor WhatsApp pengantin/panitia asli (awali dengan 62)
-            const nomorTujuanWA = "6281234567890"; 
+            const nomorTujuanWA = "6285600274942"; 
 
             // Susun teks pesan WhatsApp
             const teksPesan = "Halo, saya ingin mengonfirmasi kehadiran untuk undangan pernikahan Silpi & Diffran.\n\n" +
@@ -156,15 +165,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Menampilkan ucapan terbaru di posisi paling atas
+        // ... di dalam fungsi muatUcapan()
         daftarUcapan.reverse().forEach(function(item) {
             const div = document.createElement('div');
-            div.className = 'wish-card p-3 mb-2 shadow-sm border';
+            // Tambahkan class 'akrilik-card' agar warnanya mengikuti background cokelat
+            div.className = 'wish-card p-3 mb-2 shadow-sm border akrilik-card'; 
             div.innerHTML = `
                 <div class="d-flex justify-content-between align-items-center mb-1">
                     <h5 class="fw-bold m-0" style="font-size: 14px;"><i class="fa-solid fa-user-heart me-2 text-gold"></i>${item.nama}</h5>
                     <small class="text-muted" style="font-size: 11px;">${item.waktu}</small>
                 </div>
-                <p class="mb-0 text-secondary italic">"${item.pesan}"</p>
+                <p class="mb-0 text-white italic">"${item.pesan}"</p>
             `;
             wishesBox.appendChild(div);
         });
@@ -231,6 +242,42 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             }
         });
+    });
+
+    // ==========================================================================
+    // SELEKTOR OTOMATIS UNTUK ANIMASI SCROLL TRANSISI ELEMEN & GAMBAR (IMG)
+    // ==========================================================================
+    const targetElemenAnimasi = document.querySelectorAll(`
+        #mempelai .row, 
+        #mempelai .quotes-quran,
+        #mempelai .countdown-box,
+        .card-event, 
+        .gallery-item, 
+        .timeline-item, 
+        #rsvp form, 
+        #wishes form, 
+        #wishes-box, 
+        #egift .card,
+        #mempelai img,
+        .gallery-item img,
+        .custom-qris-img
+    `);
+
+    const pengamatScroll = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('scroll-terlihat');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        root: null,
+        threshold: 0.1, 
+        rootMargin: "0px 0px -40px 0px" 
+    });
+
+    targetElemenAnimasi.forEach(elemen => {
+        pengamatScroll.observe(elemen);
     });
 
 });
